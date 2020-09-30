@@ -24,10 +24,7 @@ with open(election_csv) as csvfile:
     for row in csvreader:
         votes.append(str(row[2]))
 
-print("Election Results")
-print("--------------------------")
-print(f'Total Votes: {len(votes)}')
-print("--------------------------")
+
 
 # loop to build candidates list
 for x in votes:
@@ -92,7 +89,11 @@ Correy_per = "{:.3%}".format(Correy_count / len(votes))
 Li_per = "{:.3%}".format(Li_count / len(votes))
 OTooley_per = "{:.3%}".format(OTooley_count / len(votes))
 
-
+# print results on screen
+print("Election Results")
+print("--------------------------")
+print(f'Total Votes: {len(votes)}')
+print("--------------------------")
 print(f'{candidates[0]}: {Khan_per} ({Khan_count})')
 print(f'{candidates[1]}: {Correy_per} ({Correy_count})')
 print(f'{candidates[2]}: {Li_per} ({Li_count})')
@@ -100,3 +101,17 @@ print(f'{candidates[3]}: {OTooley_per} ({OTooley_count})')
 print("--------------------------")
 print(f'Winner: {Winner}')
 print("--------------------------")
+
+# print results to .txt file
+with open("Election_Results.txt", "a") as f:
+    print("Election Results", file=f)
+    print("--------------------------", file=f)
+    print(f'Total Votes: {len(votes)}', file=f)
+    print("--------------------------")
+    print(f'{candidates[0]}: {Khan_per} ({Khan_count})', file=f)
+    print(f'{candidates[1]}: {Correy_per} ({Correy_count})', file=f)
+    print(f'{candidates[2]}: {Li_per} ({Li_count})', file=f)
+    print(f'{candidates[3]}: {OTooley_per} ({OTooley_count})', file=f)
+    print("--------------------------", file=f)
+    print(f'Winner: {Winner}', file=f)
+    print("--------------------------", file=f)
