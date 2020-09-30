@@ -18,7 +18,7 @@ with open(budget_csv) as csvfile:
     rowchange = []
 
     
-    # create a lists of date and profit/loss columns
+    # create a lists for date and profit/loss columns
     for row in csvreader:
         pl.append(float(row[1]))
         date.append(row[0])
@@ -40,8 +40,8 @@ for i in range(1, len(pl)):
     minchange = min(rowchange)
 
     # produce max and min change dates
-    maxchange_date = str(date[rowchange.index(max(rowchange))])
-    minchange_date = str(date[rowchange.index(min(rowchange))])
+    maxchange_date = str(date[rowchange.index(max(rowchange)) + 1])
+    minchange_date = str(date[rowchange.index(min(rowchange)) + 1])
     
     
 print("Financial Analysis")
@@ -51,3 +51,12 @@ print(f"Total: $ {sum(pl)}")
 print(f"Avereage Change: ${(avgchange)}")
 print(f'Greatest Increase in Profits: {maxchange_date} (${maxchange})')
 print(f'Greatest Decrease in Profits: {minchange_date} (${minchange})')
+
+with open("Financial_Analysis.txt", "a") as f:
+    print("Financial Analysis", file=f)
+    print("-----------------------------------", file=f)
+    print(f"Total Months: {len(date)}", file=f)
+    print(f"Total: $ {sum(pl)}", file=f)
+    print(f"Avereage Change: ${(avgchange)}", file=f)
+    print(f'Greatest Increase in Profits: {maxchange_date} (${maxchange})', file=f)
+    print(f'Greatest Decrease in Profits: {minchange_date} (${minchange})', file=f)
